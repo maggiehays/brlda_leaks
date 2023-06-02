@@ -8,7 +8,7 @@
       "ghcr.io/eitsupi/devcontainer-features/go-task:1": {}
     },
     // Use 'postCreateCommand' to run commands after the container is created.
-    "postCreateCommand": "task deps",
+    "postCreateCommand": "python -m pip install --progress-bar off -r requirements.txt",
     // Configure tool-specific properties
     "customizations": {
       "vscode": {
