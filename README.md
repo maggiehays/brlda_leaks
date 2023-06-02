@@ -1,23 +1,23 @@
-# [WIP] brlda_leaks
+# [WIP] brlda_leaks (duckdb)
 
-Run `brlda_leak_data_load.sql` in an interactive psql session to:
+Open a duckdb session with `./duckdb` and run `.read build.sql` in order to:
 
-1. Create a new schema `brlda_leaks`
-2. Create & insert data for the following CSVs:
+1. Create & insert data for the following CSVs:
  * divisions
  * employees
  * managers
  * safehouses
- * actions
+ * actions (note: it is gzipped for size)
+
+ note: the data is not persisted and must be recreated every session. To save the database, use .open in duckdb CLI to open an existing file or create a new one.
 
 ## Known Caveats/Open Issues
 
-* `actions.csv` is not currently available in this repo; download it [here](https://paste.c-net.org/AnatomyJuliet) & add it to your `data/` subdirectory before running the copy command for `brlda_leaks.actions`
-
-* everything is inserted as a varchar (with acception of a timestamp here & there. We'll need to do some work to parse/reformat some of the columns that are storing lists, for example `divisions.division`, `divisions.project`, and `divisions.known_safehouses`: 
+* data types are implied by duckdb - they can be defined with read_csv_auto or in more classical SQL DDL statements.
 
 ```
-select * from brlda_leaks.divisions limit 10;
+from divisions limit 10;
+-- since we are using duckdb syntax, we can omit "Select *" when we want to see all columns
 
 EmployeeID |   EmployeeName   |               Division                |                                                          Project                                                           |  known_safehouses   
 ------------+------------------+---------------------------------------+----------------------------------------------------------------------------------------------------------------------------+---------------------
