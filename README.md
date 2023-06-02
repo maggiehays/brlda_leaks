@@ -1,6 +1,6 @@
 # [WIP] brlda_leaks (duckdb)
 
-Run `.read build.sql` in duckdb cli session to:
+Open a duckdb session with `./duckdb` and run `.read build.sql` in order to:
 
 1. Create & insert data for the following CSVs:
  * divisions
@@ -8,6 +8,8 @@ Run `.read build.sql` in duckdb cli session to:
  * managers
  * safehouses
  * actions (note: it is gzipped for size)
+
+ note: the data is not persisted and must be recreated every session. To save the database, use .open in duckdb CLI to open an existing file or create a new one.
 
 ## Known Caveats/Open Issues
 
